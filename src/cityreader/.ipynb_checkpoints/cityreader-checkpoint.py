@@ -25,13 +25,15 @@ import csv #don't forget to import this!!!
 
 cities = []
 
-with open('cities.csv') as f:
-    reader = csv.reader(f)
-    next(reader)  # skips the first row
-    for row in reader:
-        cities.append(City(row[0], row[3], row[4]))
-
-        
+def cityreader(cities=[]):
+    with open('cities.csv') as f:
+        reader = csv.reader(f)
+        next(reader)  # skips the first row
+        for row in reader:
+            cities.append(City(row[0], float(row[3]), float(row[4])))
+        return cities
+    
+cityreader(cities)
 # Print the list of cities (name, lat, lon), 1 record per line.
 
 for c in cities:
